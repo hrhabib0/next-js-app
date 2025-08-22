@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function AddProductForm() {
   const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
@@ -12,6 +13,7 @@ export default function AddProductForm() {
     description: "",
   });
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,6 +25,7 @@ export default function AddProductForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     let imageUrl = "";
 
@@ -56,13 +59,14 @@ export default function AddProductForm() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(productData),
     });
+    setLoading(false); // stop loading
 
     if (res.ok) {
-      alert("✅ Product added successfully!");
+      toast.success("✅ Product added successfully!");
       setFormData({ name: "", price: "", description: "" });
       setFile(null);
     } else {
-      alert("❌ Failed to add product");
+      toast.error("❌ Failed to add product"); 
     }
   };
 
@@ -101,11 +105,35 @@ export default function AddProductForm() {
         className="w-full border p-2 rounded"
         required
       />
+
       <button
         type="submit"
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center justify-center gap-2"
+        disabled={loading}
       >
-        Add Product
+        {loading && (
+          <svg
+            className="animate-spin h-5 w-5 text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            ></circle>
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8v8H4z"
+            ></path>
+          </svg>
+        )}
+        {loading ? "Uploading..." : "Add Product"}
       </button>
     </form>
   );

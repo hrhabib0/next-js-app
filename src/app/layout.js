@@ -4,6 +4,7 @@ import Link from "next/link";
 import { SessionProvider } from "next-auth/react";
 import Providers from "./providers";
 import Navbar from "@/components/Navbar";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
           <footer className="bg-gray-800 text-white p-4 text-center">
             © {new Date().getFullYear()} NextAssignment. All rights reserved.
           </footer>
+          <Toaster position="top-right" />
         </Providers>
       </body>
     </html>

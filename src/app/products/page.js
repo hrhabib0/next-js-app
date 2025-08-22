@@ -25,7 +25,7 @@ export default async function ProductsPage() {
               />
               <div className="p-6">
                 <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
-                <p className="text-gray-600 mb-4">{product.desc}</p>
+                <p className="text-gray-600 mb-4">{product.description}</p>
                 <p className="text-blue-600 font-bold mb-4">${product.price}</p>
                 <Link
                   href={`/products/${product._id}`}

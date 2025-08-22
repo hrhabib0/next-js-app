@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getProductById } from "@/lib/products";
 
 export default async function ProductDetailPage({ params }) {
-  const {id } = params;
+  const {id } = await params;
   const product = await getProductById(id);
 
   // If product not found, show 404 message
@@ -36,7 +36,7 @@ export default async function ProductDetailPage({ params }) {
           {/* Product Info */}
           <div className="md:w-1/2 p-6 flex flex-col justify-center">
             <h1 className="text-4xl font-bold mb-4">{product.name}</h1>
-            <p className="text-gray-700 mb-6">{product.desc}</p>
+            <p className="text-gray-700 mb-6">{product.description}</p>
             <p className="text-2xl font-semibold text-blue-600 mb-6">
               ${product.price}
             </p>
