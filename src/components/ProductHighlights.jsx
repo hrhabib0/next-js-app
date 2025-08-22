@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const products = [
-    { id: 1, name: "Smartphone", desc: "Latest 5G technology.", img: "/smarthphone.png" },
+    { id: 1, name: "Smartphone", desc: "Latest 5G technology.", img: "/smartphone.png" },
     { id: 2, name: "Headphones", desc: "Noise cancelling.", img: "/headphones.jpg" },
     { id: 3, name: "Smartwatch", desc: "Track your fitness goals.", img: "/smart-watch.jpg" },
 ];
