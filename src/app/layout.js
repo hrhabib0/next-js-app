@@ -1,6 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import { SessionProvider } from "next-auth/react";
+import Providers from "./providers";
+import Navbar from "@/components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,26 +26,18 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-gray-100 text-gray-900`}
       >
-        {/* Navbar */}
-        <nav className="bg-blue-600 text-white p-4 flex justify-between">
-          <Link href="/" className="font-bold text-lg">Next Js</Link>
-          <div className="space-x-4">
-            <Link href="/">Home</Link>
-            <Link href="/products">Products</Link>
-            
-          </div>
-          <div className="space-x-4">
-            <Link href="/login">Login</Link>
-          </div>
-        </nav>
+        <Providers>
+          {/* Navbar */}
+          <Navbar></Navbar>
 
-        {/* Main Content */}
-        <main className="flex-grow">{children}</main>
+          {/* Main Content */}
+          <main className="flex-grow">{children}</main>
 
-        {/* Footer */}
-        <footer className="bg-gray-800 text-white p-4 text-center">
-          © {new Date().getFullYear()} NextAssignment. All rights reserved.
-        </footer>
+          {/* Footer */}
+          <footer className="bg-gray-800 text-white p-4 text-center">
+            © {new Date().getFullYear()} NextAssignment. All rights reserved.
+          </footer>
+        </Providers>
       </body>
     </html>
   );

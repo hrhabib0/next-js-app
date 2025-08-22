@@ -2,12 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { getProductById } from "@/lib/products";
 
-// Next.js 13+ App Router supports async server components
 export default async function ProductDetailPage({ params }) {
-  console.log(params)
   const {id } = params;
-
-  // Fetch single product (currently from mock, later DB)
   const product = await getProductById(id);
 
   // If product not found, show 404 message
@@ -29,7 +25,7 @@ export default async function ProductDetailPage({ params }) {
           {/* Product Image */}
           <div className="md:w-1/2">
             <Image
-              src={product.img}
+              src={product.image}
               alt={product.name}
               width={500}
               height={400}

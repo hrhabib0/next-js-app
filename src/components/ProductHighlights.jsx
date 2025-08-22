@@ -19,11 +19,11 @@ export default async function ProductHighlights() {
               className="bg-gray-50 shadow-md rounded-lg p-6 hover:shadow-lg transition"
             >
               <Image
-                src={product.img}
+                src={product.image}
                 alt={product.name}
                 width={200}
                 height={150}
-                className="mx-auto mb-4 rounded-lg"
+                className="mb-4 w-full h-64 object-cover"
               />
               <h3 className="text-xl font-semibold">{product.name}</h3>
               <p className="text-gray-600">{product.desc}</p>
