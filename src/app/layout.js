@@ -29,6 +29,9 @@ export default function RootLayout({ children }) {
           <div className="space-x-4">
             <Link href="/">Home</Link>
             <Link href="/products">Products</Link>
+            
+          </div>
+          <div className="space-x-4">
             <Link href="/login">Login</Link>
           </div>
         </nav>
